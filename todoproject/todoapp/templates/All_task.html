@@ -1,0 +1,26 @@
+{%load static%}
+{% if is_authenticated%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   {% for i in key %}
+    <h2>id :  {{i.id}}</h2>
+    <h2>title :{{i.Title}}</h2>
+    <h2>des :{{i.Description}}</h2>
+    <h2>date :{{i.Date}}</h2>
+        <a href="{%url 'editdata' i.id%}"> edit</a>
+        <a href="{%url 'deletedata' i.id%}"> Delete</a>
+        <img src="{{i.image.url}}" width="300px" height="340px" alt="no image found">
+        <video  >
+             <source src=" {{i.videos.url}} " type="video/mp4"> </video> 
+   {% endfor %}
+</body>
+</html>
+{%else%}
+<h1> please login</h1>
+{%endif%}

@@ -1,0 +1,36 @@
+
+{%if auth.is_authenticated%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>this is edit page</h1>
+  {% for i in key %}
+  <h2>id :  {{i.id}}</h2>
+  <h2>title :{{i.Title}}</h2>
+  <h2>des :{{i.Description}}</h2>
+  <h2>date :{{i.Date}}</h2>
+ 
+
+ <div class="container">
+    <div class="form-container">
+        <form action="{%url 'editdata' i.id%}" method="POST">
+            {%csrf_token%}
+            <label for="title" >Title</label>
+            <input type="text" value={{i.Title}} name="tt" />
+            <label for="description"> Description</label>
+            <textarea name="dep" id=""> {{i.Description}}</textarea>
+            <button type ='submit'>Submit</button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>
+{%else%}
+<h1> please login fist</h1>
+{%endif%}
